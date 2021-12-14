@@ -1,6 +1,6 @@
 package com.example.fetchrewardsapplication.api
 
-import com.example.fetchrewardsapplication.model.APIResponse
+import com.example.fetchrewardsapplication.model.APIData
 import retrofit2.Response
 import retrofit2.http.GET
 
@@ -12,5 +12,5 @@ interface RetrofitAPI {
     }
 
     @GET("/hiring.json")
-    suspend fun getData(): APIResponse
+    suspend fun getData(): Response<List<APIData>>
 }
