@@ -40,6 +40,8 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+
 
     // dependencies versions.
     def retrofit_version = "2.9.0"
