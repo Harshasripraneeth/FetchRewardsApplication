@@ -1,2 +1,10 @@
 # FetchRewardsApplication
-An android application which retrieves data from an API using retrofit2 library, and displays the list in a recyclerview.
+   App to display items retrieved from a REST API.
+## Concepts/Libraries being used:
+- Mvvm with Repository and View Binding
+- View Model
+- Live Data
+- Dagger Hilt
+- Kotlin Coroutines
+- Retrofit for Network Handling.
+- Gson for Serialization and Deserialization
