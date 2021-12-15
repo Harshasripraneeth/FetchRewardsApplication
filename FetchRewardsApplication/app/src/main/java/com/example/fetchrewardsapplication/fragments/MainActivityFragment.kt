@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fetchrewardsapplication.R
 import com.example.fetchrewardsapplication.databinding.FragmentMainActivityBinding
 import com.example.fetchrewardsapplication.model.GroupItemsData
-import com.example.fetchrewardsapplication.utilities.GroupItemsAdapter
+import com.example.fetchrewardsapplication.adapters.GroupItemsAdapter
 import com.example.fetchrewardsapplication.viewmodel.MainViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,6 +18,8 @@ import dagger.hilt.android.AndroidEntryPoint
  * created by Harsha Sri Praneeth
  * Starting fragment of the Navigation graph.
  */
+private const val TAG_NAME = "MainActivityFragment"
+
 @AndroidEntryPoint
 class MainActivityFragment: Fragment(R.layout.fragment_main_activity){
     private val viewmodel by viewModels<MainViewModel>()
@@ -43,7 +45,7 @@ class MainActivityFragment: Fragment(R.layout.fragment_main_activity){
 
         viewmodel.getListData().observe(viewLifecycleOwner, Observer<List<GroupItemsData>>{ data ->
             recyclerViewAdapter.list = data
-            Log.d("Main Activity",data.toString())
+            Log.i(TAG_NAME,data.toString())
         })
     }
 }

@@ -17,6 +17,8 @@ import javax.inject.Inject
  *  created by Harsha Sri Praneeth Konduru
  *  Dagger-Hilt is used to inject the [repository].
  */
+
+private const val TAG_NAME = "MainViewModel"
 @HiltViewModel
 class MainViewModel @Inject constructor(private val repository: AppRepository): ViewModel() {
 
@@ -38,7 +40,7 @@ class MainViewModel @Inject constructor(private val repository: AppRepository): 
                 ?.filter { !it.name.isNullOrEmpty() }
                 ?.sortedWith(compareBy<APIData> { it.listId }.thenBy { it.name })
 
-            Log.d("sorted data", sortedData?.size.toString())
+            Log.d(TAG_NAME, sortedData?.size.toString())
 
             /***
              * combining the data into a hashmap, that can be used for grouping of recyclerview.
@@ -71,15 +73,15 @@ class MainViewModel @Inject constructor(private val repository: AppRepository): 
                 if(tempList != null){
                     val tempObject = GroupItemsData(listId,tempList)
                     result.add(tempObject)
-                    Log.d("sorted Data", tempList.size.toString())
+                    Log.d(TAG_NAME, tempList.size.toString())
                 }
                 else{
-                    Log.d("sorted Data","Data Missing at the time of conversion.")
+                    Log.d(TAG_NAME,"Data Missing at the time of conversion.")
                 }
             }
             listData.postValue(result)
         }
-        else Log.d("error","error occured!!!")
+        else Log.d(TAG_NAME,"error occured!!!")
         }
     }
 

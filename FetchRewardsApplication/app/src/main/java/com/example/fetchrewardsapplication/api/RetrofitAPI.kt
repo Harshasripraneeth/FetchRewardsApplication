@@ -10,7 +10,6 @@ import retrofit2.http.GET
 interface RetrofitAPI {
 
     companion object{
-       // const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com/hiring.json"
        const val BASE_URL = "https://fetch-hiring.s3.amazonaws.com"
     }
 
