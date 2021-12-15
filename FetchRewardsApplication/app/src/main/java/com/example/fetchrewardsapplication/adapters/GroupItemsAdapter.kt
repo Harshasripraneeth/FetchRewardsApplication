@@ -62,7 +62,6 @@ class GroupItemsAdapter: RecyclerView.Adapter<GroupItemsAdapter.ViewHolder>() {
          * Assigning the data to respective views.
          */
         holder.binding.apply {
-           // tvListId.text = "ListId: ${currentItem.listId}"
             tvListId.text = tvListId.resources.getString(R.string.text_tvlisid,currentItem.listId)
         }
 
