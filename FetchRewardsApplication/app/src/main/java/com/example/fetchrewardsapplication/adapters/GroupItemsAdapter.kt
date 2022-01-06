@@ -14,6 +14,7 @@ import androidx.transition.TransitionManager
 import com.example.fetchrewardsapplication.R
 import com.example.fetchrewardsapplication.databinding.GroupItemsLayoutBinding
 import com.example.fetchrewardsapplication.model.GroupItemsData
+import com.example.fetchrewardsapplication.model.RecyclerViewData
 
 /***
  *  created by Harsha Sri Praneeth Konduru
@@ -21,7 +22,11 @@ import com.example.fetchrewardsapplication.model.GroupItemsData
  *  Enhancement: Bindable Adapter can be used to show different views in single recycler view.
  */
 private const val TAG_NAME = "GroupItemsAdapter"
-class GroupItemsAdapter: RecyclerView.Adapter<GroupItemsAdapter.ViewHolder>() {
+class GroupItemsAdapter(private val customListener: GroupItemsAdapter.CustomItemClickListener): RecyclerView.Adapter<GroupItemsAdapter.ViewHolder>() {
+
+    interface CustomItemClickListener{
+        fun onItemClick(data: List<RecyclerViewData.ItemData>)
+    }
 
     /***
      * compares the previous data present in the recyclerview with the latest API Response data.
@@ -66,32 +71,11 @@ class GroupItemsAdapter: RecyclerView.Adapter<GroupItemsAdapter.ViewHolder>() {
         }
 
         /***
-         * Adapter for [rcItemView] present in [item_layout].
-         */
-        val itemAdapter = ItemAdapter(currentItem.itemData)
-        holder.binding.rcItemView.apply{
-            setHasFixedSize(true)
-            adapter = itemAdapter
-            layoutManager = LinearLayoutManager(holder.binding.root.context)
-        }
-
-        /***
          * Transitions for animating the [rcItemView].
          */
         holder.binding.groupAdapterLinearLayout.apply{
-            TransitionManager.beginDelayedTransition(this,AutoTransition())
-            layoutTransition.enableTransitionType(LayoutTransition.CHANGING)
-            setOnClickListener{
-                val itemsView = holder.binding.rcItemView
-                val tvHint = holder.binding.tvHint
-                itemsView.visibility = if(itemsView.isVisible) View.GONE else View.VISIBLE
-
-                tvHint.hint = if(itemsView.isVisible)
-                                resources.getString(R.string.hint_recyclerview_visible)
-                else  resources.getString(R.string.hint_recyclerview_notvisible)
-            }
+            setOnClickListener { customListener.onItemClick(currentItem.itemData) }
         }
-        holder.binding.rcItemView.addItemDecoration(DividerItemDecoration(holder.binding.root.context,LinearLayout.VERTICAL))
     }
 
     /**

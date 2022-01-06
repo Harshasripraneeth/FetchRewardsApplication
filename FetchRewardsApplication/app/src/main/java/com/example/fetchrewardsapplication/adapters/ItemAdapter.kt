@@ -15,7 +15,7 @@ import com.example.fetchrewardsapplication.model.RecyclerViewData
  *  Enhancement: Bindable adapter can be used to show different views in single recycler view.
  */
 
-private const val TAG_NAME = "ItemAdapter"
+private const val TAG_NAME = "ChildAdapter"
 class ItemAdapter(val list: List<RecyclerViewData.ItemData>): RecyclerView.Adapter<ItemAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -47,9 +47,7 @@ class ItemAdapter(val list: List<RecyclerViewData.ItemData>): RecyclerView.Adapt
 
 
     inner class ViewHolder( val binding: ItemLayoutBinding)
-        : RecyclerView.ViewHolder(binding.root) {
-
-    }
+        : RecyclerView.ViewHolder(binding.root)
 
 }
 
